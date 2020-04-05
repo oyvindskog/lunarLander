@@ -41,9 +41,10 @@ void game::init(const char* title, int x, int y, int width, int height)
 
 void game::handleEvents()
 {
+
     SDL_Event event;
     SDL_PollEvent(&event);
-
+    _world->handle_events(&event);
     switch (event.type) {
     case SDL_QUIT:
         isRunning = false;
@@ -86,6 +87,7 @@ void game::render()
 void game::update()
 {
     _world->remove_dead_objects();
+    _world->update();
     _world->move();
 }
 

@@ -20,6 +20,8 @@ add_subdirectory(vector)
 
 add_subdirectory(game_object)
 
+add_subdirectory(entity)
+
 add_subdirectory(world)
 
 add_subdirectory(game)

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libentity_manager.a  CMakeFiles/entity_manager.dir/entity_manager.cpp.o CMakeFiles/entity_manager.dir/body.cpp.o CMakeFiles/entity_manager.dir/physics.cpp.o CMakeFiles/entity_manager.dir/key_handler.cpp.o CMakeFiles/entity_manager.dir/collision.cpp.o
+/usr/bin/ranlib libentity_manager.a
