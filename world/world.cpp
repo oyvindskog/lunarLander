@@ -26,7 +26,7 @@ world::world() {
 
   entity *e = new entity();
   e->add_component<body>(vector2d(100, 100), _spaceship);
-  e->add_component<physics>(vector2d(0, 0));
+  e->add_component<physics>(vector2d(0, 0.1));
   e->add_component<collision>();
   e->add_component<key_handler>();
   _entity_manager->addEntity(e);

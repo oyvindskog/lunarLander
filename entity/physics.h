@@ -45,7 +45,7 @@ private:
   void accelerate_angular();
   vector2d _gravity = {0, 0};
   vector2d _speed = {0, 0};
-  float _max_speed = 10;
+  float _max_speed = 15;
   float _drag = 0.95;
 
   float _angular_speed = 0;

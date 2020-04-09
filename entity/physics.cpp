@@ -51,4 +51,6 @@ void physics::reset_forces() {
 
 void physics::move() { body_component->position_add(_speed); }
 
-void physics::accelerate() { _speed += _acceleration; }
+void physics::accelerate() { 
+  _speed += _acceleration; 
+}
