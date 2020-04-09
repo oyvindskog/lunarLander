@@ -8,10 +8,10 @@
 class vector2d {
 
 public:
-    vector2d(double x, double y);
+    vector2d(float x, double y);
 
-    double get_x() const { return _x; };
-    double get_y() const { return _y; };
+    float get_x() const { return _x; };
+    float get_y() const { return _y; };
 
     vector2d operator+(const vector2d&) const;
 
@@ -21,31 +21,35 @@ public:
 
     bool operator==(const vector2d&) const;
 
-    vector2d operator*(double scalar) const;
+    vector2d operator*(float scalar) const;
 
-    void operator*=(double scalar);
+    void operator*=(float scalar);
 
-    double dot(const vector2d&) const;
+    float dot(const vector2d&) const;
 
-    double length() const;
+    float cross(const vector2d&) const;
+
+    float length() const;
 
     vector2d unit() const;
 
-    double angleRadians() const;
+    float angleRadians() const;
 
-    double angleDegrees() const;
+    float angleDegrees() const;
 
-    void rotate(double degrees);
+    void rotate(float degrees);
+
+    vector2d rotated(float degrees) const;
 
     vector2d direction_to(const vector2d&) const;
 
-    double distance_to(const vector2d&) const;
+    float distance_to(const vector2d&) const;
 
     friend std::ostream& operator<<(std::ostream& os, const vector2d& v);
 
 private:
-    double _x = 0;
-    double _y = 0;
+    float _x = 0;
+    float _y = 0;
 };
 
 #endif

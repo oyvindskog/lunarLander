@@ -25,7 +25,7 @@ public:
 
     void position_add(const vector2d& speed) {_position += speed;}
 
-    void rotate(double angle);
+    void rotate(float angle);
 
     const vector2d& get_position() const {return _position;}
 

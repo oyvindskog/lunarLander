@@ -31,7 +31,7 @@ body::render(SDL_Renderer* renderer) const
 }
 
 void
-body::rotate(double angle)
+body::rotate(float angle)
 {
     for (auto& p : _parts) p.v.rotate(angle);
 }

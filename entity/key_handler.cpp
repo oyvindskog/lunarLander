@@ -18,10 +18,10 @@ void key_handler::handle_events(SDL_Event*)
         _physics->thrust();
     }
     if( currentKeyStates[ SDL_SCANCODE_LEFT ] ){
-        _physics->accelerate_angular(-1);
+        _physics->impact_angular(-1);
     }
     if( currentKeyStates[ SDL_SCANCODE_RIGHT ] ){
-        _physics->accelerate_angular(1);
+        _physics->impact_angular(1);
     }
 
 }

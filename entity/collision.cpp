@@ -33,30 +33,29 @@ collision::handle_collisions(entity_vector& entities)
         if (e.get() == _ent || 
             !e->has_component<collision>()) continue;
             
-        auto e_body = e->get_component<body>();
-        auto e_physics = e->get_component<physics>();
+        auto e_body = &e->get_component<body>();
+        if (e_body->get_position().distance_to(_body->get_position()) > 30)
+            continue;
+        auto e_physics = &e->get_component<physics>();
         
-        for (auto& p : e_body.get_parts()) {
+        for (auto& p : e_body->get_parts()) {
             for (auto& this_p : _body->get_parts()) {
-                
+                /* Brace yourself for magical mystery physics */ 
                 vector2d this_pp = _body->get_position() + this_p.v;
-                vector2d pp = e_body.get_position() + p.v;
-
+                vector2d pp = e_body->get_position() + p.v;
+            
                 if (bodyparts_overlap(pp, this_pp)) {
-                    
-                    double m_this = _physics->get_mass();
-                    double m_e = e_physics.get_mass();
-                    double combined_m = m_this + m_e;
-                    
-                    double first = (m_this - m_e) / (combined_m);
-                    double second = (2 * m_e) / combined_m;
-                    vector2d this_impact = (_physics->get_speed() * first) + 
-                                           (e_physics.get_speed() * second);
-
-                    _physics->accelerate(this_impact);
-                    return;
+                    auto rv = _physics->get_speed() - e_physics->get_speed();
+                    vector2d pNonRotated = this_p.v.rotated(270 - _physics->get_direction());
+                    vector2d normal = this_p.v.unit();
+                    float velNormal = rv.dot(normal);
+                    float fa = (this_p.v.get_x() + this_p.v.get_y()) * rv.length() * 0.2;
+                    _physics->impact(normal * velNormal * 2 * -1);
+                    _physics->impact_angular(fa * 3);
+                    goto outerloop;
                 }
             }
         }
+outerloop: ;
     }
 }

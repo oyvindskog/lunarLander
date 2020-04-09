@@ -52,7 +52,7 @@ void game::handleEvents()
     default:
         break;
     }
-
+/*
     _world->reset_keypress();
     const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
     if (currentKeyStates[SDL_SCANCODE_UP]) {
@@ -72,7 +72,7 @@ void game::handleEvents()
         }
     }
 
-    _world->detect_collision();
+    _world->detect_collision();*/
 }
 
 void game::render()
@@ -86,9 +86,9 @@ void game::render()
 
 void game::update()
 {
-    _world->remove_dead_objects();
+    //_world->remove_dead_objects();
     _world->update();
-    _world->move();
+    //_world->move();
 }
 
 void game::clean()
