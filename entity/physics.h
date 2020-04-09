@@ -1,66 +1,64 @@
 #ifndef PHYSICS_COMPONENT_H
 #define PHYSICS_COMPONENT_H
 
-
-#include "vector2d.h"
-#include "component.h"
 #include "body.h"
+#include "component.h"
+#include "vector2d.h"
 
 class entity;
 
-class physics : public component
-{
+class physics : public component {
 
 public:
-    physics(entity* e, vector2d&& gravity);
+  physics(entity *e, vector2d &&gravity);
 
-    void update() override;
+  void update() override;
 
-    void move();
+  void move();
 
-    void set_max_speed(float max) { _max_speed = max; }
+  void set_max_speed(float max) { _max_speed = max; }
 
-    void set_drag(float drag) { _drag = drag; }
+  void set_drag(float drag) { _drag = drag; }
 
-    const vector2d& get_speed() const {return _speed;}
+  const vector2d &get_speed() const { return _speed; }
 
-    void set_speed(const vector2d& speed) {_speed = speed;}
-    
-    float get_direction() {return _direction;}
+  void set_speed(const vector2d &speed) { _speed = speed; }
 
-    void set_mass(float mass) { _mass = mass; }
+  float get_direction() { return _direction; }
 
-    float get_mass() const { return _mass; }
-    
-    void impact(const vector2d& force);
+  void set_mass(float mass) { _mass = mass; }
 
-    void impact_angular(float force);
+  float get_mass() const { return _mass; }
 
-    void reset_forces();
+  void impact(const vector2d &force);
 
-    void thrust();
+  void impact_angular(float force);
 
-    vector2d get_direction_vector() const;
+  void reset_forces();
 
-private: 
-    void accelerate();
-    void accelerate_angular(); 
-    vector2d _gravity = {0, 0};
-    vector2d _speed = {0, 0};
-    float _max_speed = 10;
-    float _drag = 0.95;
+  void thrust();
 
-    float _angular_speed = 0;
-    float _angular_drag = 0.9;
-    float _direction = 270;
+  vector2d get_direction_vector() const;
 
-    vector2d _acceleration = {0, 0};
-    float _angular_acceleration = 0;
+private:
+  void accelerate();
+  void accelerate_angular();
+  vector2d _gravity = {0, 0};
+  vector2d _speed = {0, 0};
+  float _max_speed = 10;
+  float _drag = 0.95;
 
-    body* body_component = nullptr; 
+  float _angular_speed = 0;
+  float _angular_drag = 0.9;
+  float _direction = 270;
 
-    float _mass = 10;
-    float _force = 0.5;
+  vector2d _acceleration = {0, 0};
+  float _angular_acceleration = 0;
+
+  body *body_component = nullptr;
+
+  float _mass = 10;
+  float _force = 0.5;
 };
 
 #endif

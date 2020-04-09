@@ -1,39 +1,37 @@
 #ifndef BODY_COMPONENT_H
 #define BODY_COMPONENT_H
 
-
-#include <vector>
-#include "vector2d.h"
 #include "component.h"
+#include "vector2d.h"
+#include <vector>
 
 struct part {
-    vector2d v;
-    int red;
-    int green;
-    int blue;
+  vector2d v;
+  int red;
+  int green;
+  int blue;
 };
 
-class body : public component
-{
+class body : public component {
 
 public:
-    body(entity* e, vector2d&& position, std::vector<part>& parts);
-    
-    void add_part(part&&);
+  body(entity *e, vector2d &&position, std::vector<part> &parts);
 
-    void render(SDL_Renderer* renderer) const override;
+  void add_part(part &&);
 
-    void position_add(const vector2d& speed) {_position += speed;}
+  void render(SDL_Renderer *renderer) const override;
 
-    void rotate(float angle);
+  void position_add(const vector2d &speed) { _position += speed; }
 
-    const vector2d& get_position() const {return _position;}
+  void rotate(float angle);
 
-    const std::vector<part>& get_parts() const {return _parts;}
-private: 
-    vector2d _position;    
-    std::vector<part> _parts;
+  const vector2d &get_position() const { return _position; }
 
+  const std::vector<part> &get_parts() const { return _parts; }
+
+private:
+  vector2d _position;
+  std::vector<part> _parts;
 };
 
 #endif
